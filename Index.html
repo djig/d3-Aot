@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="dd">
+  <head>
+    <meta charset="utf-8" />
+    <title>JD Angular JS Directive Example</title>
+    <link rel="stylesheet" href="bootstrap.css"/>
+    <link rel="stylesheet" href="app.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script   src="https://code.angularjs.org/1.3.17/angular.js"  ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.js"></script>
+    <script src="app.js"></script>
+  </head>
+<body>
+  <!-- Punker demo URL :http://plnkr.co/edit/jNsftPGlQi53VncxW0Vh?p=preview -->
+  <div class="container">
+      <div class="row zoomAsOfDate">
+        <div  id="d3_0" class="col-xs-3 col-lg-2 mainC2 ">
+          <d3-Aot id='main2011' options={year:2011,factor:.94,isActive:0} vals=[0,0,0,0,0,0,0,0,0,0,0,110]></d3-Aot>
+        </div>
+          <div id="d3_1" class="col-xs-3 mainC2 marg">
+              <d3-Aot id='main2012' options={year:2012,factor:0.95,isActive:0} vals=[119.2,55,119,119,119,119,119,119,100,119,119,130]></d3-Aot>
+          </div>
+          <div id="d3_2" class="col-xs-3  mainC2 marg">
+            <d3-Aot id='main2013' options={year:2013,factor:.96,isActive:0} vals=[4,5,6,4,5,6,7,8,3,2,2,7]></d3-Aot>
+          </div>
+          <div id="d3_3" class="col-xs-3  mainC2 marg">
+            <d3-Aot id='main2014' options={year:2014,factor:.98,isActive:0} vals=[4,5,6,4,5,6,7,8,3,2,2,7]></d3-Aot>
+          </div>
+           <div  id="d3_4" class="col-xs-3  mainC2 marg">
+        <d3-Aot id='main2015' options={year:2015,factor:1,isActive:1,activeMonth:'Jul'} vals=[119,55,119,119,119,119,119,0,0,0,0,0]></d3-Aot>
+      </div>
+      </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+      $(".mainC2").hover(function () {
+          d3AsOfMouseLeave(this);
+        //stuff to do on mouse enter
+        if($(this).attr("class").indexOf('marg')>-1 ){
+             console.log("ji" );
+            $("this").addClass("margA");
+            var id= $(this).attr("id");
+            console.log($("#"+id+" ~ .mainC2")[0]);
+            var nextElement=$("#"+id+" ~ .mainC2")[0];
+              $(nextElement).addClass("margA");
+            //$("#"+id+" ~ .mainC2").addClass("margA");
+        }
+        else{
+           $(".mainC2:nth-child(2)").addClass("margA");
+        }
+      },
+      function () {
+            d3AsOfMouseLeave(this);
+          });
+    });
+    function d3AsOfMouseLeave(e){
+      //stuff to do on mouse leave
+        $(e).removeClass("margA");
+        $(".mainC2:nth-child(2)").removeClass("margA",1000);
+        var id= $(e).attr("id");
+        $("#"+id+" ~ .mainC2").removeClass("margA",1000);
+    }
+</script>
+</body>
+
+</html>
